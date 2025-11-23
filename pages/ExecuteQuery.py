@@ -3,18 +3,23 @@ Metadata Query Chat interface page for Bedrock Chatbot Application.
 Provides interactive chat UI for querying structured metadata using natural language.
 """
 
-import streamlit as st
 import os
+import warnings
 import logging
 from datetime import datetime
 from typing import List, Dict, Any, Optional
 from functools import lru_cache
 
+# Configure logging to suppress ScriptRunContext warnings  
+warnings.filterwarnings('ignore', category=UserWarning, module='streamlit')
+
+import streamlit as st
 from config.settings import load_config, ConfigurationError
 from utils.aws_client import BedrockClient, BedrockError
 from utils.s3_loader import S3MetadataLoader, S3LoaderError
 from utils.csv_data_loader import CSVDataLoader, CSVLoaderError
 from utils.metadata_query_handler import MetadataQueryHandler, MetadataQueryError
+from utils.suggestion_generator import SuggestionGenerator
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -33,20 +38,13 @@ def load_css(file_path):
     with open(file_path) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-load_css("assets/execute_query.css")
-
 # Sidebar navigation menu with icons
-st.sidebar.title("Navigation")
+st.sidebar.title("MetaBeaver")
 st.sidebar.markdown("---")
 
-# Home menu item
-st.sidebar.page_link("Welcome.py", label=" Home", icon="🏠")
-
-# Chat menu item
-st.sidebar.page_link("pages/GenAI_ChatAway.py", label=" Chat", icon="💬")
-
-# Metadata Query Chat menu item
-st.sidebar.page_link("pages/Metadata_Query_Chat.py", label=" Metadata Query", icon="📊")
+# Navigation menu items
+if st.sidebar.button("🏠 Home", use_container_width=True):
+    st.switch_page("Home.py")
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### About")
@@ -224,6 +222,12 @@ def initialize_session_state():
     
     if 'initialized' not in st.session_state:
         st.session_state.initialized = False
+    
+    if 'suggestion_generator' not in st.session_state:
+        st.session_state.suggestion_generator = None
+    
+    if 'suggestions' not in st.session_state:
+        st.session_state.suggestions = []
 
 
 @st.cache_resource
@@ -414,6 +418,15 @@ def initialize_query_handler():
     st.session_state.query_handler = query_handler
     st.session_state.initialized = True
     
+    # Initialize suggestion generator with the same bedrock client
+    if st.session_state.suggestion_generator is None:
+        try:
+            bedrock_client = query_handler.bedrock_client
+            st.session_state.suggestion_generator = SuggestionGenerator(bedrock_client)
+            logger.info("SuggestionGenerator initialized successfully")
+        except Exception as e:
+            logger.error(f"Failed to initialize SuggestionGenerator: {str(e)}")
+    
     return True
 
 
@@ -478,6 +491,9 @@ def display_query_results(results_df, query_used: Optional[str] = None):
 
 def main():
     """Main function for the metadata query chat interface page."""
+    # Load CSS
+    load_css("assets/execute_query.css")
+    
     # Initialize session state
     initialize_session_state()
     
@@ -588,8 +604,26 @@ def main():
     # Display chat messages in a scrollable container
     display_chat_messages()
     
-    # Chat input
-    user_input = st.chat_input("Ask a question about the metadata...")
+    # Display suggestion questions if available
+    if st.session_state.suggestions and len(st.session_state.messages) > 0:
+        st.markdown("### 💡 Suggested Questions")
+        cols = st.columns(2)
+        for idx, suggestion in enumerate(st.session_state.suggestions):
+            col_idx = idx % 2
+            with cols[col_idx]:
+                if st.button(suggestion, key=f"suggestion_{idx}", use_container_width=True):
+                    # Set the suggestion as user input
+                    st.session_state.selected_suggestion = suggestion
+                    st.rerun()
+    
+    # Check if a suggestion was selected
+    user_input = None
+    if 'selected_suggestion' in st.session_state and st.session_state.selected_suggestion:
+        user_input = st.session_state.selected_suggestion
+        st.session_state.selected_suggestion = None
+    else:
+        # Chat input
+        user_input = st.chat_input("Ask a question about the metadata...")
     
     if user_input:
         # Display user message immediately
@@ -603,6 +637,9 @@ def main():
             'content': user_input,
             'timestamp': datetime.now().isoformat()
         })
+        
+        # Clear previous suggestions when user sends a new message
+        st.session_state.suggestions = []
         
         # Show loading spinner with status while processing
         with st.spinner("🤔 Processing your query..."):
@@ -686,6 +723,19 @@ def main():
                         'row_count': row_count,
                         'data_source': data_source
                     })
+                    
+                    # Generate suggestion questions after assistant response
+                    if st.session_state.suggestion_generator:
+                        try:
+                            suggestions = st.session_state.suggestion_generator.generate_suggestions(
+                                conversation_context=st.session_state.messages,
+                                num_suggestions=4
+                            )
+                            st.session_state.suggestions = suggestions
+                            logger.info(f"Generated {len(suggestions)} suggestion questions")
+                        except Exception as e:
+                            logger.error(f"Failed to generate suggestions: {str(e)}")
+                            st.session_state.suggestions = []
                     
                     # Rerun to display the new messages
                     st.rerun()

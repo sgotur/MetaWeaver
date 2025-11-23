@@ -1,5 +1,12 @@
-import streamlit as st
 import os
+import warnings
+import logging
+
+# Configure logging to suppress ScriptRunContext warnings
+logging.basicConfig(level=logging.ERROR)
+warnings.filterwarnings('ignore', category=UserWarning, module='streamlit')
+
+import streamlit as st
 from config.settings import load_config, ConfigurationError
 
 # Page with title, icon, and layout settings
@@ -14,8 +21,6 @@ st.set_page_config(
 def load_css(file_path):
     with open(file_path) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
-load_css("assets/style.css")
 
 # Validate configuration on startup
 def validate_startup_configuration():
@@ -43,6 +48,9 @@ def validate_startup_configuration():
         return False, str(e)
     except Exception as e:
         return False, f"Unexpected configuration error: {str(e)}"
+
+# Load CSS after page config
+load_css("assets/style.css")
 
 # Check configuration validity
 config_valid, config_error = validate_startup_configuration()
@@ -102,9 +110,11 @@ if not config_valid:
 st.sidebar.title("MetaBeaver")
 st.sidebar.markdown("---")
 
-# Home menu item
-st.sidebar.page_link("Home.py", label=" Home", icon="🏠")
-st.sidebar.page_link("pages/ExecuteQuery.py", label=" Metadata Query", icon="📊")
+# Navigation menu items
+if st.sidebar.button("🏠 Home", use_container_width=True):
+    st.rerun()
+if st.sidebar.button("📊 Metadata Query", use_container_width=True):
+    st.switch_page("pages/ExecuteQuery.py")
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### About")
