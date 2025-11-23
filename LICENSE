@@ -1,21 +1,123 @@
-MIT License
+METABEAVER AI CHATBOT LICENSE AGREEMENT
 
 Copyright (c) 2025 sgotur
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+================================================================================
+TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+================================================================================
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. DEFINITIONS
+
+"Software" refers to the MetaBeaver AI ChatBot application, including all 
+source code, documentation, configuration files, and associated materials.
+
+"Organization" refers to sgotur and any affiliated entities.
+
+"Personal Use" means use by an individual for non-commercial, educational, 
+or personal purposes.
+
+"Commercial Use" means any use of the Software for commercial advantage or 
+monetary compensation, including but not limited to:
+  - Use in a commercial product or service
+  - Use by a for-profit organization
+  - Use to generate revenue directly or indirectly
+  - Integration into commercial software or services
+
+2. GRANT OF LICENSE
+
+2.1 Personal and Non-Commercial Use
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this Software, to use, copy, modify, and distribute the Software for 
+PERSONAL AND NON-COMMERCIAL purposes only, subject to the following conditions:
+
+  a) The above copyright notice and this license agreement shall be included 
+     in all copies or substantial portions of the Software.
+  
+  b) Any modifications or derivative works must clearly indicate that changes 
+     were made from the original Software.
+  
+  c) The Software may not be used for any commercial purposes without explicit 
+     written permission from the Organization.
+
+2.2 Commercial Use Restriction
+
+COMMERCIAL USE OF THIS SOFTWARE IS STRICTLY PROHIBITED without prior written 
+permission from the Organization. Any person or entity wishing to use this 
+Software for commercial purposes must:
+
+  a) Contact the Organization to request commercial licensing
+  b) Obtain explicit written permission
+  c) Comply with any terms and conditions specified in the commercial license
+
+To request commercial licensing, please contact: [contact information]
+
+3. ATTRIBUTION
+
+All copies, modifications, or derivative works of the Software must retain 
+the original copyright notice and clearly attribute the work to the Organization.
+
+4. RESTRICTIONS
+
+You may NOT:
+  - Use the Software for commercial purposes without written permission
+  - Remove or alter any copyright notices or license information
+  - Claim ownership of the original Software
+  - Use the Organization's name or trademarks without permission
+  - Sublicense the Software for commercial use
+
+5. DISCLAIMER OF WARRANTY
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. THE ORGANIZATION MAKES
+NO WARRANTIES REGARDING THE SOFTWARE'S PERFORMANCE, RELIABILITY, OR SUITABILITY
+FOR ANY PARTICULAR PURPOSE.
+
+6. LIMITATION OF LIABILITY
+
+IN NO EVENT SHALL THE ORGANIZATION, AUTHORS, OR COPYRIGHT HOLDERS BE LIABLE 
+FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+TORT OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE 
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+This includes but is not limited to:
+  - Direct, indirect, incidental, or consequential damages
+  - Loss of profits, data, or business opportunities
+  - Costs of procurement of substitute goods or services
+
+7. TERMINATION
+
+This license is effective until terminated. Your rights under this license 
+will terminate automatically without notice if you fail to comply with any 
+of its terms. Upon termination, you must destroy all copies of the Software 
+in your possession.
+
+8. GOVERNING LAW
+
+This license shall be governed by and construed in accordance with the laws 
+of the jurisdiction in which the Organization is located, without regard to 
+its conflict of law provisions.
+
+9. ENTIRE AGREEMENT
+
+This license constitutes the entire agreement between the parties concerning 
+the Software and supersedes all prior agreements and understandings, whether 
+written or oral.
+
+10. MODIFICATIONS TO LICENSE
+
+The Organization reserves the right to modify this license at any time. 
+Continued use of the Software after modifications constitutes acceptance 
+of the modified terms.
+
+================================================================================
+
+For commercial licensing inquiries, please contact:
+Email: [your-email@example.com]
+Website: [your-website.com]
+
+================================================================================
+
+BY USING THIS SOFTWARE, YOU ACKNOWLEDGE THAT YOU HAVE READ THIS LICENSE 
+AGREEMENT, UNDERSTAND IT, AND AGREE TO BE BOUND BY ITS TERMS AND CONDITIONS.
