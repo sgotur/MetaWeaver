@@ -1,0 +1,105 @@
+/* Main chat container styling */
+.stChatMessage {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* User message styling */
+.stChatMessage[data-testid="user-message"] {
+    background-color: #e3f2fd;
+}
+
+/* Assistant message styling */
+.stChatMessage[data-testid="assistant-message"] {
+    background-color: #f5f5f5;
+}
+
+/* Chat input styling */
+.stChatInput {
+    border-radius: 0.5rem;
+    border: 2px solid #e0e0e0;
+    padding: 0.5rem;
+}
+
+.stChatInput:focus {
+    border-color: #2196f3;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+/* Spinner styling */
+.stSpinner > div {
+    border-color: #2196f3 transparent transparent transparent;
+}
+
+/* Error message styling */
+.stAlert {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+/* Sidebar styling */
+.css-1d391kg {
+    padding: 2rem 1rem;
+}
+
+/* Responsive adjustments for tablets */
+@media (max-width: 1024px) {
+    .stChatMessage {
+        padding: 0.75rem;
+    }
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .stChatMessage {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Markdown content styling */
+.stMarkdown {
+    line-height: 1.6;
+}
+
+.stMarkdown code {
+    background-color: #f5f5f5;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', monospace;
+}
+
+.stMarkdown pre {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+}
+
+/* Loading indicator styling */
+.stSpinner {
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Scrollable chat container */
+.main .block-container {
+    max-width: 1200px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Data table styling */
+.dataframe {
+    font-size: 0.9rem;
+}
